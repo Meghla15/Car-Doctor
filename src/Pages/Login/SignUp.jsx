@@ -1,7 +1,10 @@
 import { Link } from 'react-router-dom';
 import loginLogo from '../../assets/images/login/login.svg'
+import UseAuth from '../../Hooks/UseAuth';
+
 
 const SignUp = () => {
+  const {createUser} = UseAuth()
     const handleSignUP = (e) =>{
         e.preventDefault ()
         const form = e.target
@@ -9,7 +12,16 @@ const SignUp = () => {
         const email = form.email.value
         const password = form.password.value
         console.log(name,email, password)
-       
+         
+        createUser (email, password) 
+        .then(result =>{
+          const user = result.user;
+          console.log(user)
+          .then (error =>{
+            console.log(error)
+          })
+        }) 
+
        
     }
     return (
