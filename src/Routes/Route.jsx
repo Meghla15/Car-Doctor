@@ -7,6 +7,8 @@ import Blogs from "../Pages/Blogs/Blogs";
 import Contact from "../Pages/Contact/Contact";
 import SignUp from "../Pages/Login/SignUp";
 import SignIn from "../Pages/Login/SignIn";
+import CheckOut from "../Pages/CheckOut/CheckOut";
+
 
 const router = createBrowserRouter ([
     {
@@ -40,6 +42,16 @@ const router = createBrowserRouter ([
             {
                 path: '/signIn',
                 element: <SignIn />
+            },
+            {
+                path: '/signIn',
+                element: <SignIn />,
+                loader : ({params}) =>fetch(`http://localhost:5000/services/${params.id}`)
+            },
+            {
+                path:'/checkout/:id',
+                element: <CheckOut></CheckOut>,
+                loader : ({params}) =>fetch(`http://localhost:5000/services/${params.id}`)
             },
            
         ],
